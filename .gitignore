@@ -1,15 +1,23 @@
-# Binaries for programs and plugins
-*.exe
-*.exe~
-*.dll
-*.so
-*.dylib
+peers.json
+genesis.json
+secretsManagerConfig.json
+*-packr.go
+config*.json
 
-# Test binary, built with `go test -c`
-*.test
+bin/
 
-# Output of the go coverage tool, specifically when used with LiteIDE
-*.out
+test-chain*
+polygon-edge-chain*
+.idea
 
-# Dependency directories (remove the comment below to include it)
-# vendor/
+# Exclude the build .exe file from version control
+dist/
+main.exe
+main
+
+# MacOS Leftovers
+.DS_Store
+.vscode
+
+# exclude build folder
+artifacts
