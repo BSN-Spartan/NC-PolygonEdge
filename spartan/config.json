@@ -1,0 +1,36 @@
+{
+  "chain_config": "./genesis.json",
+  "secrets_config": "",
+  "data_dir": "./data",
+  "block_gas_target": "0x0",
+  "grpc_addr": "0.0.0.0:9632",
+  "jsonrpc_addr": "0.0.0.0:8545",
+  "telemetry": {
+    "prometheus_addr": ""
+  },
+  "network": {
+    "no_discover": false,
+    "libp2p_addr": "0.0.0.0:1478",
+    "nat_addr": "",
+    "dns_addr": "",
+    "max_peers": -1,
+    "max_outbound_peers": -1,
+    "max_inbound_peers": -1
+  },
+  "seal": true,
+  "tx_pool": {
+    "price_limit": 1000000000,
+    "max_slots": 2500
+  },
+  "log_level": "INFO",
+  "restore_file": "",
+  "block_time_s": 5,
+  "headers": {
+    "access_control_allow_origins": [
+      "*"
+    ]
+  },
+  "log_to": "",
+  "dev": true,
+  "json_rpc_batch_request_limit":100
+}

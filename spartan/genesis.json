@@ -1,0 +1,56 @@
+{
+    "name": "polygon-edge",
+    "genesis": {
+        "nonce": "0x0000000000000000",
+        "timestamp": "0x0",
+        "extraData": "0x0000000000000000000000000000000000000000000000000000000000000000f859f85494c60e7734a514f93ea7f6df5d089e43d83b34e843940ae9b2f34a51bf655e655b497b75de6479127e239477d43d3ca20038d19b1308b2fb6a838fc37512f69461ae43e5f52705343c1b77feba0d59b2dc4e9adbc080c0",
+        "gasLimit": "0x3b9aca00",
+        "difficulty": "0x1",
+        "mixHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "coinbase": "0x0000000000000000000000000000000000000000",
+        "alloc": {
+            "0x4161cAfFeeC110d34868205BB2d9013aFE3B4476": {
+                "balance": "0xffffffffffffffffffffffffffffffff"
+            },
+            "0x6622bE37dAB1973428BcA3eDdabff90c6Ff9D809": {
+                "balance": "0xffffffffffffffffffffffffffffffff"
+            },
+            "0x7AaBFE321f8ce80ca42cFFAf583fb73A5DA09ba5": {
+                "balance": "0xffffffffffffffffffffffffffffffff"
+            },
+            "0x925fa6b05a98134563E08eBc8cE72223a327B9c7": {
+                "balance": "0xffffffffffffffffffffffffffffffff"
+            },
+            "0xf28Ea1AA9e74F862217e7859F5a3CB320Fb2315B": {
+                "balance": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+            }
+        },
+        "number": "0x0",
+        "gasUsed": "0x70000",
+        "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "params": {
+        "forks": {
+            "homestead": 0,
+            "byzantium": 0,
+            "constantinople": 0,
+            "petersburg": 0,
+            "istanbul": 0,
+            "EIP150": 0,
+            "EIP158": 0,
+            "EIP155": 0
+        },
+        "chainID": 5566,
+        "engine": {
+            "ibft": {
+                "epochSize": 100000,
+                "type": "PoA"
+            }
+        },
+        "blockGasTarget": 0
+    },
+    "bootnodes": [
+        "/ip4/18.143.84.30/tcp/10006/p2p/16Uiu2HAmRjLeEXdoWNyCTJ2QJahH1jUTHUP8xrywFzj8DaYUs539",
+        "/ip4/18.143.89.236/tcp/10007/p2p/16Uiu2HAmUQHVk3GHjPLaUomyvkwJyQhEH8mVya2SP7Pq1akEUwur"
+    ]
+}
