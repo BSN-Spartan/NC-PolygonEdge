@@ -110,7 +110,7 @@ docker pull bsnspartan/nc-polygon-edge:latest
 
 ### 4.1 Configuration
 
-Put `genesis.json` and `config.json` files into the run directory before starting the service.
+Put [genesis.json](https://github.com/BSN-Spartan/NC-PolygonEdge/blob/main/spartan/genesis.json) and [config.json](https://github.com/BSN-Spartan/NC-PolygonEdge/blob/main/spartan/config.json) files into the run directory before starting the service.
 
 `genesis.json` defines the genesis block data, which specifies the system parameters. Run the following command to get the latest BootNode:
 
