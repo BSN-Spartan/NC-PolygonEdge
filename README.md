@@ -246,7 +246,7 @@ Execute the following commands to check the version of Polygon Edge and confirm 
 ```
 polygon-edge version
 //The following output indicates that the installation is complete
-v1.0.0
+v0.5.0
 ```
 Start your node with the command below:
 
