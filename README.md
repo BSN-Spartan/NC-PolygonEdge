@@ -1,4 +1,4 @@
-## Spartan-III  NC-PolygonEdge
+## Spartan-III Chain (Powered by NC PolygonEdge)
 
 # Introduction
 
@@ -8,7 +8,7 @@ A Non-Cryptocurrency Public Chain is a transformed public chain framework based 
 
 This document is a guide to install, configure and run a full node in the Non-Crypto Polygon Edge (NC-PolygonEdge) public blockchain.
 
-NC-Polygon Edge networks have two identifiers, a network ID and a chain ID. Although they often have the same value, they have different uses. Peer-to-peer communication between nodes uses the network ID, while the transaction signature process uses the chain ID.
+NC-PolygonEdge networks have two identifiers, a network ID and a chain ID. Although they often have the same value, they have different uses. Peer-to-peer communication between nodes uses the network ID, while the transaction signature process uses the chain ID.
 
 NC-PolygonEdge Network Id = Chain Id = 5566
 
