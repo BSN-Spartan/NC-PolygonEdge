@@ -69,7 +69,7 @@ go version
 
 ### 3.2 Installation
 
-There are 3 methods to install `NC-PolygonEdge`: building from source and docker. Please refer to the installation method more applicable to you.
+There are 2 methods to install `NC-PolygonEdge`: building from source and docker. Please refer to the installation method more applicable to you.
 
 #### 3.2.1 Building from Source
 
