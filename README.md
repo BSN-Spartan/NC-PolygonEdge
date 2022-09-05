@@ -287,7 +287,7 @@ docker exec spartan-nc-polygon-edge polygon-edge status --grpc-address 127.0.0.1
 
 ## 5. Generate the Node Signature
 
-When joining the Spartan Network as a VDC, the VDC Owner will be rewarded a certain amount of NTT Incentives based on the quantity of the registered node. To achieve this, the VDC Owner should firstly provide the signature of the VDC node to verify the node's ownership.
+When joining the Spartan Network as a DC, the DC Operator will be rewarded a certain amount of NTT Incentives based on the quantity of the registered node. To achieve this, the DC Operator should first provide the signature of the full node to verify the node's ownership.
 
 ####  Node Installed by Commands:
 
