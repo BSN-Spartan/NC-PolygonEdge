@@ -2,21 +2,21 @@
 
 # Introduction
 
-A Non-Cryptocurrency Public Chain is a transformed public chain framework based on an existing public chain. Gas Credit transfers are not permitted between standard wallets. There will be no cryptocurrency incentives for mining or participating in consensus.
+A Non-Cryptocurrency Public Chain is a transformed public chain framework based on an existing public chain. Gas Credit transfers are not permitted between standard wallets. There are no cryptocurrency incentives for mining or participating in consensus. On Spartan Network, there are three Non-Cryptocurrency Public Chains at launch. We except to add more in the foreseeable future. 
 
 ## 1. About Spartan-III Chain (Powered by NC PolygonEdge)
 
-This document is a guide to install, configure and run a full node in the Non-Crypto Polygon Edge (NC-PolygonEdge) public blockchain.
+This document is a guide to install, configure and run a full node in the Spartan-III Chain(Powered by NC-PolygonEdge) public blockchain.
 
-NC-PolygonEdge networks have two identifiers, a network ID and a chain ID. Although they often have the same value, they have different uses. Peer-to-peer communication between nodes uses the network ID, while the transaction signature process uses the chain ID.
+Spartan-III Chain (Powered by NC PolygonEdge) network has two identifiers, a network ID and a chain ID. Although they often have the same value, they have different uses. Peer-to-peer communication between nodes uses the network ID, while the transaction signature process uses the chain ID.
 
-NC-PolygonEdge Network Id = Chain Id = 5566
+Spartan-III Chain Network Id = Chain Id = 5566
 
-Below is the instructions for Linux.
+Below is the instruction for Linux.
 
 ## 2. Hardware Requirement
 
-It is recommended to build NC-PolygonEdge nodes on Linux Server with the following requirement.
+It is recommended to build Spartan-III Chain full nodes on Linux Server with the following requirement.
 
 #### Minimum Requirement
 
@@ -38,7 +38,7 @@ It is recommended to build NC-PolygonEdge nodes on Linux Server with the followi
 
 ### 3.1 Prerequisites:
 
-**Go 1.17** or above is recommended for building and installing the Spartan-PolygonEdge software. Install `go` by the following steps:
+**Go 1.17** or above is recommended for building and installing the Spartan-III Chain node software. Install `go` by the following steps:
 
 Download and untar the installation file
 
@@ -69,7 +69,7 @@ go version
 
 ### 3.2 Installation
 
-There are 2 methods to install `NC-PolygonEdge`: building from source and docker. Please refer to the installation method more applicable to you.
+There are 2 methods to install `NC-PolygonEdge`: building from source and docker. Please refer to the installation method that is most applicable in your specific case.
 
 #### 3.2.1 Building from Source
 
@@ -85,7 +85,7 @@ cp polygon-edge /usr/bin
 #### 3.2.2 Using Docker Images
 
 
-Before installing the node by Docker images, Docker 18 or later version should be installed in your server.
+Before installing the full node by Docker images, Docker 18 or later version should be installed in your server.
 
 Run the following command to install the Docker image:
 
@@ -93,7 +93,7 @@ Run the following command to install the Docker image:
 wget -qO- https://get.docker.com/ | sh
 ```
 
-Grant your user permission to execute Docker commands:
+Grant user permission to execute Docker commands:
 
 ```
 sudo usermod -aG docker your-user
@@ -239,16 +239,15 @@ https://docs.polygon.technology/docs/edge/configuration/sample-config
 ### 4.2 Start the Node
 #### 4.2.1 Start by Commands
 
-Make sure you have `NC-PolygonEdge` installed (refer to 3.2.1), and  `genesis.json` and `config.json`  are in the run directory.
-
-Execute the following commands to check the version of Polygon Edge and confirm the installation status of `NC-PolygonEdge`:
+Users should make sure they have Spartan-III Chain installed and genesis.json and config.json are in the run directory.
+Execute the following commands to check the version of Polygon Edge and confirm the installation status of Spartan-III (Powered by NC PolygonEdge):
 
 ```
 polygon-edge version
 //The following output indicates that the installation is complete
 v0.5.0
 ```
-Start your node with the command below:
+Start the node with the command below:
 
 ```
 polygon-edge server --config config.json
@@ -294,7 +293,7 @@ When joining the Spartan Network as a VDC, the VDC Owner will be rewarded a cert
 
 Execute the following command in the node's data directory after the node is started.
 
-Remember to configure NAT for your node and enable node discovery if you haven't.
+Remember to configure NAT for your node and enable node discovery.
 
 ```
 polygon-edge secrets validate --data-dir data --grpc-address 127.0.0.1:9632 --json
@@ -320,7 +319,7 @@ docker exec spartan-nc-polygon-edge polygon-edge secrets validate --data-dir dat
 
 #### Node Signature
 
-After executing the above commands，you will get the following information. Please submit it to the Spartan Governance System when registering the node .
+After executing the above commands，you will get the following information. Please submit it to the locally installed Data Center Management System when registering the node .
 
 ```
 {
