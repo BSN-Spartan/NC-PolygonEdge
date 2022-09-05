@@ -276,13 +276,13 @@ Make sure you have installed the node by Docker images (refer to 3.2.2), and `ge
 Execute the following command in your config file directory to start the node:
 
 ```
-docker run -d -p 8545:8545 -p 1478:1478 -p 9632:9632 -v $PWD:/opt/ --restart=always --name spartan-nc-poly-edge bsnspartan/nc-polygon-edge:latest server --config config.json
+docker run -d -p 8545:8545 -p 1478:1478 -p 9632:9632 -v $PWD:/opt/ --restart=always --name spartan-nc-polygon-edge bsnspartan/nc-polygon-edge:latest server --config config.json
 ```
 
 Confirm the node status:
 
 ```
-docker exec spartan-nc-poly-edge polygon-edge status --grpc-address 127.0.0.1:9632
+docker exec spartan-nc-polygon-edge polygon-edge status --grpc-address 127.0.0.1:9632
 ```
 
 
@@ -313,7 +313,7 @@ polygon-edge secrets validate --data-dir data --grpc-address 127.0.0.1:9632 --js
 Execute below command:
 
 ```
-docker exec spartan-nc-poly-edge polygon-edge secrets validate --data-dir data --grpc-address 127.0.0.1:9632
+docker exec spartan-nc-polygon-edge polygon-edge secrets validate --data-dir data --grpc-address 127.0.0.1:9632
 ```
 
 
