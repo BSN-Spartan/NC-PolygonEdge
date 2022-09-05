@@ -79,7 +79,7 @@ The stable branch is `main`.
 git clone https://github.com/BSN-Spartan/NC-PolygonEdge.git
 cd NC-PolygonEdge/
 go build -o polygon-edge main.go
-sudo mv polygon-edge /usr/bin
+cp polygon-edge /usr/bin
 ```
 
 #### 3.2.2 Using Docker Images
