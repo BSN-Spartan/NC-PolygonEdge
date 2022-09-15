@@ -1,4 +1,6 @@
-FROM golang:1.18 as builder
+FROM golang:1.18-alpine as builder
+
+RUN apk add --no-cache gcc musl-dev linux-headers git make
 
 ENV GO111MODULE=on
 
@@ -6,7 +8,7 @@ WORKDIR /app
 
 ADD . .
 
-RUN go build -o polygon-edge main.go
+RUN make build
 
 FROM alpine:latest
 
@@ -17,7 +19,7 @@ RUN set -x \
 
 RUN mkdir /lib64 && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2
 
-COPY --from=builder /app/polygon-edge /usr/local/bin/
+COPY --from=builder /app/polygon-edge /usr/bin/
 
 RUN mkdir -p /opt/logs
 

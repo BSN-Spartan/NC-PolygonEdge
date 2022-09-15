@@ -78,7 +78,7 @@ The stable branch is `main`.
 ```
 git clone https://github.com/BSN-Spartan/NC-PolygonEdge.git
 cd NC-PolygonEdge/
-go build -o polygon-edge main.go
+make build
 cp polygon-edge /usr/bin
 ```
 
