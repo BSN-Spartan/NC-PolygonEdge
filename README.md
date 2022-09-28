@@ -2,7 +2,9 @@
 
 # Introduction
 
-A Non-Cryptocurrency Public Chain is a transformed public chain framework based on an existing public chain. Gas Credit transfers are not permitted between standard wallets. There are no cryptocurrency incentives for mining or participating in consensus. On Spartan Network, there are three Non-Cryptocurrency Public Chains at launch. We except to add more in the foreseeable future. 
+A Non-Cryptocurrency Public Chain is a transformed public chain framework based on an existing public chain. Gas Credit transfers are not permitted between standard wallets. There are no cryptocurrency incentives for mining or participating in consensus. On Spartan Network, there are three Non-Cryptocurrency Public Chains at launch. We except to add more in the foreseeable future.
+
+> As a clear demonstration, all commands in this document are run with root permission. These commands can also be run under normal user permissions, please set the file storage and configure the parameters properly.
 
 ## 1. About Spartan-III Chain (Powered by NC PolygonEdge)
 
@@ -14,29 +16,29 @@ Spartan-III Chain Network Id = Chain Id = 5566
 
 Below is the instruction for Linux.
 
-## 2. Hardware Requirement
+## 2. Hardware Requirements
 
 It is recommended to build Spartan-III Chain full nodes on Linux Server with the following requirement.
 
-#### Minimum Requirement
+#### Minimum Requirements:
 
-- 2CPU
+- 2 CPU
 - Memory: 2GB
 - Disk: 100GB SSD
-- OS: Ubuntu 16.04 LTS +
 - Bandwidth: 20Mbps
 
-#### Recommended Requirement
+#### Recommended Requirements
 
 - 4 CPU
 - Memory: 16GB
 - Disk: 512GB SSD
-- OS: Ubuntu 18.04 LTS +
 - Bandwidth: 20Mbps
 
-## 3. How to Install a Full Node
+## 3. Node Installation
 
-### 3.1 Prerequisites:
+There are 2 methods to install NC PolygonEdge Node: building from source and installing by Docker. Please refer to the installation method that is most applicable in your specific case.
+
+### 3.1 Building from Source
 
 **Go 1.17** or above is recommended for building and installing the Spartan-III Chain node software. Install `go` by the following steps:
 
@@ -59,22 +61,23 @@ export PATH=$PATH:/usr/local/go/bin
 source /etc/profile
 ```
 
-Check the installation result
+Now, check whether `go` is correctly installed:
 
 ```
 go version
 ```
 
+![](https://raw.githubusercontent.com/BSN-Spartan/NC-PolygonEdge/main/.github/images/1.go_version.jpg)
 
+Before compiling the source code, make sure that `gcc` has been successfully installed. If not, please install `gcc` first. Check by the following command:
 
-### 3.2 Installation
+```shell
+gcc -v
+```
 
-There are 2 methods to install `NC-PolygonEdge`: building from source and docker. Please refer to the installation method that is most applicable in your specific case.
+![](https://raw.githubusercontent.com/BSN-Spartan/NC-PolygonEdge/main/.github/images/2.%20gcc.jpg)
 
-#### 3.2.1 Building from Source
-
-The stable branch is `main`.
-
+Download the source code of Spartan NC PolygonEdge from github (git has been installed):
 ```
 git clone https://github.com/BSN-Spartan/NC-PolygonEdge.git
 cd NC-PolygonEdge/
@@ -82,7 +85,15 @@ make build
 cp polygon-edge /usr/bin
 ```
 
-#### 3.2.2 Using Docker Images
+Execute the following commands to check the version of Spartan NC PolygonEdge:
+
+```
+polygon-edge version
+```
+
+![](https://raw.githubusercontent.com/BSN-Spartan/NC-PolygonEdge/main/.github/images/5.polygonversion.jpg)
+
+### 3.2 Using Docker Images
 
 
 Before installing the full node by Docker images, Docker 18 or later version should be installed in your server.
@@ -98,6 +109,12 @@ Grant user permission to execute Docker commands:
 ```
 sudo usermod -aG docker your-user
 ```
+Now, check the docker version:
+
+```shell
+docker version
+```
+![](https://raw.githubusercontent.com/BSN-Spartan/NC-PolygonEdge/main/.github/images/4.1dockerversion.jpg)
 
 
 Official Docker images are hosted under the hub.docker.com registry. Run the following command to pull them to the server:
@@ -106,73 +123,13 @@ Official Docker images are hosted under the hub.docker.com registry. Run the fol
 docker pull bsnspartan/nc-polygon-edge:latest
 ```
 
-## 4. Run the Full Node
+## 4. Running the Full Node
 
 ### 4.1 Configuration
 
-Put [genesis.json](https://github.com/BSN-Spartan/NC-PolygonEdge/blob/main/spartan/genesis.json) and [config.json](https://github.com/BSN-Spartan/NC-PolygonEdge/blob/main/spartan/config.json) files into the run directory before starting the service.
+Put [genesis.json](https://github.com/BSN-Spartan/NC-PolygonEdge/blob/main/spartan/genesis.json) and [config.json](https://github.com/BSN-Spartan/NC-PolygonEdge/blob/main/spartan/config.json) files into the working directory before starting the service.
 
-`genesis.json` defines the genesis block data, which specifies the system parameters. Run the following command to get the latest BootNode:
-
-```
-{
-    "name": "polygon-edge",
-    "genesis": {
-        "nonce": "0x0000000000000000",
-        "timestamp": "0x0",
-        "extraData": "0x0000000000000000000000000000000000000000000000000000000000000000f859f85494c60e7734a514f93ea7f6df5d089e43d83b34e843940ae9b2f34a51bf655e655b497b75de6479127e239477d43d3ca20038d19b1308b2fb6a838fc37512f69461ae43e5f52705343c1b77feba0d59b2dc4e9adbc080c0",
-        "gasLimit": "0x3b9aca00",
-        "difficulty": "0x1",
-        "mixHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
-        "coinbase": "0x0000000000000000000000000000000000000000",
-        "alloc": {
-            "0x4161cAfFeeC110d34868205BB2d9013aFE3B4476": {
-                "balance": "0xffffffffffffffffffffffffffffffff"
-            },
-            "0x6622bE37dAB1973428BcA3eDdabff90c6Ff9D809": {
-                "balance": "0xffffffffffffffffffffffffffffffff"
-            },
-            "0x7AaBFE321f8ce80ca42cFFAf583fb73A5DA09ba5": {
-                "balance": "0xffffffffffffffffffffffffffffffff"
-            },
-            "0x925fa6b05a98134563E08eBc8cE72223a327B9c7": {
-                "balance": "0xffffffffffffffffffffffffffffffff"
-            },
-            "0xf28Ea1AA9e74F862217e7859F5a3CB320Fb2315B": {
-                "balance": "0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
-            }
-        },
-        "number": "0x0",
-        "gasUsed": "0x70000",
-        "parentHash": "0x0000000000000000000000000000000000000000000000000000000000000000"
-    },
-    "params": {
-        "forks": {
-            "homestead": 0,
-            "byzantium": 0,
-            "constantinople": 0,
-            "petersburg": 0,
-            "istanbul": 0,
-            "EIP150": 0,
-            "EIP158": 0,
-            "EIP155": 0
-        },
-        "chainID": 5566,
-        "engine": {
-            "ibft": {
-                "epochSize": 100000,
-                "type": "PoA"
-            }
-        },
-        "blockGasTarget": 0
-    },
-    "bootnodes": [
-        "/ip4/18.143.84.30/tcp/10006/p2p/16Uiu2HAmRjLeEXdoWNyCTJ2QJahH1jUTHUP8xrywFzj8DaYUs539",
-        "/ip4/18.143.89.236/tcp/10007/p2p/16Uiu2HAmUQHVk3GHjPLaUomyvkwJyQhEH8mVya2SP7Pq1akEUwur"
-    ]
-}
-
-```
+`genesis.json` defines the genesis block data, which specifies the system parameters.
 
 Refer to below template to configure your `config.json` file:
 
@@ -236,22 +193,19 @@ To learn more about `config.json`, check out the following link:
 
 https://docs.polygon.technology/docs/edge/configuration/sample-config
 
-### 4.2 Start the Node
-#### 4.2.1 Start by Commands
+### 4.2 Starting the Node
+#### 4.2.1 Starting by Commands
 
-Users should make sure they have Spartan-III Chain installed and genesis.json and config.json are in the run directory.
-Execute the following commands to check the version of Polygon Edge and confirm the installation status of Spartan-III (Powered by NC PolygonEdge):
+Make sure you have installed the full node of Spartan-III Chain and have put `genesis.json` and `config.json` into the working directory.
 
-```
-polygon-edge version
-//The following output indicates that the installation is complete
-v0.5.0
-```
 Start the node with the command below:
 
 ```
 polygon-edge server --config config.json
 ```
+You can see the blocks are synchronized to the node:
+![](https://raw.githubusercontent.com/BSN-Spartan/NC-PolygonEdge/main/.github/images/6.startnode.jpg)
+
 Or you can execute in the background via `nohup`:
 
 ```
@@ -267,12 +221,13 @@ Confirm the node status:
 ```
 polygon-edge status --grpc-address 127.0.0.1:9632
 ```
+![](https://raw.githubusercontent.com/BSN-Spartan/NC-PolygonEdge/main/.github/images/7.status.jpg)
 
-#### 4.2.2 Start by Docker Images
+#### 4.2.2 Starting by Docker Images
 
-Make sure you have installed the node by Docker images (refer to 3.2.2), and `genesis.json` and `config.json` are in the run directory.
+Make sure you have installed the node by Docker images (refer to 3.2.2), and `genesis.json` and `config.json` are in the working directory.
 
-Execute the following command in your config file directory to start the node:
+Execute the following command in the directory where `config.json` is located to start the node:
 
 ```
 docker run -d -p 8545:8545 -p 1478:1478 -p 9632:9632 -v $PWD:/opt/ --restart=always --name spartan-nc-polygon-edge bsnspartan/nc-polygon-edge:latest server --config config.json
@@ -287,7 +242,7 @@ docker exec spartan-nc-polygon-edge polygon-edge status --grpc-address 127.0.0.1
 
 ## 5. Generate the Node Signature
 
-When joining the Spartan Network as a DC, the DC Operator will be rewarded a certain amount of NTT Incentives based on the quantity of the registered node. To achieve this, the DC Operator should first provide the signature of the full node to verify the node's ownership.
+When joining the Spartan Network as a Data Center, the Data Center Operator will be rewarded a certain amount of NTT Incentives based on the quantity of the registered node. To achieve this, the Data Center Operator should first provide the signature of the full node to verify the node's ownership.
 
 ####  Node Installed by Commands:
 
@@ -307,7 +262,7 @@ polygon-edge secrets validate --data-dir data --grpc-address 127.0.0.1:9632 --js
 
 
 
-#### Node Installed by Docker
+#### Node Installed by Docker:
 
 Execute below command:
 
@@ -317,9 +272,9 @@ docker exec spartan-nc-polygon-edge polygon-edge secrets validate --data-dir dat
 
 
 
-#### Node Signature
+### Node Signature
 
-After executing the above commands，you will get the following information. Please submit it to the locally installed Data Center Management System when registering the node .
+After executing the above commands, you will get the following information. Please submit it to the locally installed Data Center System when registering the node.
 
 ```
 {
@@ -362,6 +317,5 @@ This guide goes into detail on how to back up and restore a Polygon Edge node in
 For detailed operation, please refer to the link below:
 
 https://docs.polygon.technology/docs/edge/working-with-node/backup-restore
-
 
 
