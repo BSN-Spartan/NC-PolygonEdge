@@ -46,18 +46,24 @@ Download and untar the installation file
 
 ```
 wget https://go.dev/dl/go1.18.5.linux-amd64.tar.gz
-
 tar -C /usr/local -zxvf go1.18.5.linux-amd64.tar.gz
 ```
 
-Modify environment variables, for example in bash
+Change environment variables, for example in bash:
 
 ```
-vim /etc/profile
+vi /etc/profile
+```
 
-# insert at the end 
+Insert the parameter at the bottom of the file:
+
+```shell
 export PATH=$PATH:/usr/local/go/bin
+```
 
+Then, save the change and make the /etc/profile file take effect:
+
+```
 source /etc/profile
 ```
 
@@ -127,9 +133,19 @@ docker pull bsnspartan/nc-polygon-edge:latest
 
 ### 4.1 Configuration
 
-Put [genesis.json](https://github.com/BSN-Spartan/NC-PolygonEdge/blob/main/spartan/genesis.json) and [config.json](https://github.com/BSN-Spartan/NC-PolygonEdge/blob/main/spartan/config.json) files into the working directory before starting the service.
+Create a new directory `node1/`:
 
-`genesis.json` defines the genesis block data, which specifies the system parameters.
+```
+mkdir node1
+```
+
+Copy [genesis.json](https://github.com/BSN-Spartan/NC-PolygonEdge/blob/main/spartan/genesis.json) and [config.json](https://github.com/BSN-Spartan/NC-PolygonEdge/blob/main/spartan/config.json) files from `spartan/` directory to node1/ directory:
+
+```
+cp ./spartan/genesis.json ./spartan/config.json node1/
+```
+
+`genesis.json` defines the genesis block data and specifies the system parameters.
 
 Refer to below template to configure your `config.json` file:
 
@@ -196,9 +212,7 @@ https://docs.polygon.technology/docs/edge/configuration/sample-config
 ### 4.2 Starting the Node
 #### 4.2.1 Starting by Commands
 
-Make sure you have installed the full node of Spartan-III Chain and have put `genesis.json` and `config.json` into the working directory.
-
-Start the node with the command below:
+Start the node in `node1/` directory with the command below:
 
 ```
 polygon-edge server --config config.json
@@ -225,11 +239,12 @@ polygon-edge status --grpc-address 127.0.0.1:9632
 
 #### 4.2.2 Starting by Docker Images
 
-Make sure you have installed the node by Docker images (refer to 3.2.2), and `genesis.json` and `config.json` are in the working directory.
+Make sure you have installed the node by Docker images (refer to 3.2.2), and `genesis.json` and `config.json` are copied and configured into `node1/` directory.
 
-Execute the following command in the directory where `config.json` is located to start the node:
+Access to node1/ directory and start the node:
 
 ```
+cd node1/
 docker run -d -p 8545:8545 -p 1478:1478 -p 9632:9632 -v $PWD:/opt/ --restart=always --name spartan-nc-polygon-edge bsnspartan/nc-polygon-edge:latest server --config config.json
 ```
 
@@ -317,5 +332,4 @@ This guide goes into detail on how to back up and restore a Polygon Edge node in
 For detailed operation, please refer to the link below:
 
 https://docs.polygon.technology/docs/edge/working-with-node/backup-restore
-
 
