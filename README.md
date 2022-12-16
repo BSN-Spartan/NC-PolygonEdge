@@ -12,7 +12,7 @@ This document is a guide to install, configure and run a full node in the Sparta
 
 Spartan-III Chain (Powered by NC PolygonEdge) network has two identifiers, a network ID and a chain ID. Although they often have the same value, they have different uses. Peer-to-peer communication between nodes uses the network ID, while the transaction signature process uses the chain ID.
 
-Spartan-III Chain Network Id = Chain Id = 5566
+**Spartan-III Chain Network Id = Chain Id = 5566**
 
 Below is the instruction for Linux.
 
