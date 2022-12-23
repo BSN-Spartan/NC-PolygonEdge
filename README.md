@@ -12,7 +12,7 @@ This document is a guide to install, configure and run a full node in the Sparta
 
 Spartan-III Chain (Powered by NC PolygonEdge) network has two identifiers, a network ID and a chain ID. Although they often have the same value, they have different uses. Peer-to-peer communication between nodes uses the network ID, while the transaction signature process uses the chain ID.
 
-**Spartan-III Chain Network Id = Chain Id = 5566**
+Spartan-III Chain Network Id = **Chain Id = 5566**
 
 Below is the instruction for Linux.
 
@@ -34,11 +34,23 @@ It is recommended to build Spartan-III Chain full nodes on Linux Server with the
 - Disk: 512GB SSD
 - Bandwidth: 20Mbps
 
-## 3. Node Installation
+## 3. Full Node Installation by Commands
+
+In this chapter, we will build a full node by commands. If you prefer to build the node by Docker Images, please go to chapter 4 Full Node Installation by Docker.
+
+
+### 3.1 Prerequisites
+
+| Software  | Version  |
+| ----- | ----- |
+| Golang | 1.17+ |
+| GCC | latest |
+| Git | 1.8.3.1+ |
+| tree (optional) | 1.6.0 |
 
 There are 2 methods to install NC PolygonEdge Node: building from source and installing by Docker. Please refer to the installation method that is most applicable in your specific case.
 
-### 3.1 Building from Source
+#### 3.1.1 Installing Golang
 
 **Go 1.17** or above is recommended for building and installing the Spartan-III Chain node software. Install `go` by the following steps:
 
@@ -75,13 +87,40 @@ go version
 
 ![](https://raw.githubusercontent.com/BSN-Spartan/NC-PolygonEdge/main/.github/images/1.go_version.jpg)
 
-Before compiling the source code, make sure that `gcc` has been successfully installed. If not, please install `gcc` first. Check by the following command:
+#### 3.1.2 Installing GCC
 
-```shell
+Install `gcc` by the following command:
+
+```
+yum install gcc
+```
+
+Check the version
+
+```
 gcc -v
 ```
 
 ![](https://raw.githubusercontent.com/BSN-Spartan/NC-PolygonEdge/main/.github/images/2.%20gcc.jpg)
+
+
+#### 3.1.3 Installing Git
+
+Install `gcc` by the system command
+
+```
+yum install git
+```
+
+Check the version
+
+```
+git version
+```
+
+![git](https://github.com/BSN-Spartan/NC-PolygonEdge/blob/main/.github/images/git_version.jpg)
+
+### 3.2 Building the Node
 
 Download the source code of Spartan NC PolygonEdge from github (git has been installed):
 ```
@@ -99,39 +138,10 @@ polygon-edge version
 
 ![](https://raw.githubusercontent.com/BSN-Spartan/NC-PolygonEdge/main/.github/images/5.polygonversion.jpg)
 
-### 3.2 Using Docker Images
 
 
-Before installing the full node by Docker images, Docker 18 or later version should be installed in your server.
+### 3.3 Configuring the Node
 
-Run the following command to install the Docker image:
-
-```
-wget -qO- https://get.docker.com/ | sh
-```
-
-Grant user permission to execute Docker commands:
-
-```
-sudo usermod -aG docker your-user
-```
-Now, check the docker version:
-
-```shell
-docker version
-```
-![](https://raw.githubusercontent.com/BSN-Spartan/NC-PolygonEdge/main/.github/images/4.1dockerversion.jpg)
-
-
-Official Docker images are hosted under the hub.docker.com registry. Run the following command to pull them to the server:
-
-```
-docker pull bsnspartan/nc-polygon-edge:latest
-```
-
-## 4. Running the Full Node
-
-### 4.1 Configuration
 
 Create a new directory `node1/`:
 
@@ -209,8 +219,7 @@ To learn more about `config.json`, check out the following link:
 
 https://docs.polygon.technology/docs/edge/configuration/sample-config
 
-### 4.2 Starting the Node
-#### 4.2.1 Starting by Commands
+### 3.4 Starting the Node
 
 Start the node in `node1/` directory with the command below:
 
@@ -223,11 +232,13 @@ You can see the blocks are synchronized to the node:
 Or you can execute in the background via `nohup`:
 
 ```
-nohup polygon-edge server --config config.json >/dev/null 2>&1 &
+nohup polygon-edge server --config config.json > output.log 2>&1 &
 ```
-To stop the node in `nohup` mode, please refer to the below command:
+
+You can check the process of block synchronization from the log:
+
 ```
-pkill -INT polygon-edge
+tail -f output.log
 ```
 
 Confirm the node status:
@@ -237,14 +248,50 @@ polygon-edge status --grpc-address 127.0.0.1:9632
 ```
 ![](https://raw.githubusercontent.com/BSN-Spartan/NC-PolygonEdge/main/.github/images/7.status.jpg)
 
-#### 4.2.2 Starting by Docker Images
 
-Make sure you have installed the node by Docker images (refer to 3.2.2), and `genesis.json` and `config.json` are copied and configured into `node1/` directory.
+## 4. Full Node Installation by Docker 
 
-Access to node1/ directory and start the node:
+In this chapter, we will build a full node by docker images. If you have built a node by commands, you can skip this chapter and move forward.
+
+### 4.1 Prerequisites
+
+| Software  | Version  |
+| ----- | ----- |
+| Docker-ce | 18+ |
+Run the following command to install the Docker image:
 
 ```
-cd node1/
+wget -qO- https://get.docker.com/ | sh
+```
+
+Grant user permission to execute Docker commands:
+
+```
+sudo usermod -aG docker your-user
+```
+Now, check the docker version:
+
+```shell
+docker version
+```
+![](https://raw.githubusercontent.com/BSN-Spartan/NC-PolygonEdge/main/.github/images/4.1dockerversion.jpg)
+
+
+Official Docker images are hosted under the hub.docker.com registry. Run the following command to pull them to the server:
+
+```
+docker pull bsnspartan/nc-polygon-edge:latest
+```
+
+### 4.2 Configuring the Node
+
+Refer to chapter 3.3 Configuring the Node, make sure you have created node1 directory, and copy `genesis.json` and `config.json` into it. You can also configure the ports in `config.json` file if needed.
+
+### 4.3 Starting the Node
+
+Access to `node1/` directory and start the node:
+
+```
 docker run -d -p 8545:8545 -p 1478:1478 -p 9632:9632 -v $PWD:/opt/ --restart=always --name spartan-nc-polygon-edge bsnspartan/nc-polygon-edge:latest server --config config.json
 ```
 
@@ -254,12 +301,11 @@ Confirm the node status:
 docker exec spartan-nc-polygon-edge polygon-edge status --grpc-address 127.0.0.1:9632
 ```
 
-
 ## 5. Generate the Node Signature
 
 When joining the Spartan Network as a Data Center, the Data Center Operator will be rewarded a certain amount of NTT Incentives based on the quantity of the registered node. To achieve this, the Data Center Operator should first provide the signature of the full node to verify the node's ownership.
 
-####  Node Installed by Commands:
+### 5.1 Node Installed by Commands:
 
 Execute the following command in the node's data directory after the node is started.
 
@@ -277,7 +323,7 @@ polygon-edge secrets validate --data-dir data --grpc-address 127.0.0.1:9632 --js
 
 
 
-#### Node Installed by Docker:
+### 5.2 Node Installed by Docker:
 
 Execute below command:
 
@@ -287,9 +333,9 @@ docker exec spartan-nc-polygon-edge polygon-edge secrets validate --data-dir dat
 
 
 
-### Node Signature
+### 5.3 Node Signature
 
-After executing the above commands, you will get the following information. Please submit it to the locally installed Data Center System when registering the node.
+After executing the above commands, you will get the following information. Please submit it to the locally installed Data Center Management System when registering the node.
 
 ```
 {
@@ -299,23 +345,52 @@ After executing the above commands, you will get the following information. Plea
 }
 ```
 
+## 6. Deleting the Node
 
+You can use the following command to stop the running node and delete it, and also clear the node data by deleting the data directory.
 
-## 6. Resources
+If the node has been registered in the Data Center, you can back up the `libp2p.key` file stored in `node1/data/libp2p/` directory, so that you can recover this registered node when needed.
 
-### 6.1 JSON-RPC Commands
+### 6.1 Ceasing the Node started by Commands
+
+Use the following command to stop the running node:
+```
+pkill -INT polygon-edge
+```
+
+### 6.2 Ceasing the Node started by Docker
+
+Use the following command to stop the running container and delete the container and the image file:
+
+```
+docker stop spartan-nc-polygon-edge
+docker rm spartan-nc-polygon-edge
+docker rmi bsnspartan/nc-polygon-edge:latest
+```
+
+### 6.3 Deleting Node Data
+
+If you need to completely delete all data of the node, you can use the following command to delete the `datadir` directory.
+
+```
+rm -rf node1/
+```
+
+## 7. Resources
+
+### 7.1 JSON-RPC Commands
 
 NC-PolygonEdge is compatible with ETH JSON RPC interface, please refer to the detailed interface list from below link:
 
 https://docs.polygon.technology/docs/edge/get-started/json-rpc-commands
 
-### 6.2 CLI Commands
+### 7.2 CLI Commands
 
 NC-PolygonEdge provides a wealth of CLI commands for managing your nodes. For a detailed command list, please refer to the link below :
 
 https://docs.polygon.technology/docs/edge/get-started/cli-commands
 
-### 6.3 Prometheus Metrics
+### 7.3 Prometheus Metrics
 
 Polygon Edge can report and serve the Prometheus metrics, which in their turn can be consumed using Prometheus collector(s).
 
@@ -325,11 +400,10 @@ https://docs.polygon.technology/docs/edge/configuration/prometheus-metrics
 
 
 
-### 6.4 Backup/Restore Node Instance
+### 7.4 Backup/Restore Node Instance
 
 This guide goes into detail on how to back up and restore a Polygon Edge node instance. It covers the base folders and what they contain, as well as which files are critical for performing a successful backup and restore.
 
 For detailed operation, please refer to the link below:
 
 https://docs.polygon.technology/docs/edge/working-with-node/backup-restore
-
