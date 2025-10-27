@@ -50,7 +50,7 @@
         "blockGasTarget": 0
     },
     "bootnodes": [
-        "/ip4/18.143.84.30/tcp/10006/p2p/16Uiu2HAmRjLeEXdoWNyCTJ2QJahH1jUTHUP8xrywFzj8DaYUs539",
-        "/ip4/18.143.89.236/tcp/10007/p2p/16Uiu2HAmUQHVk3GHjPLaUomyvkwJyQhEH8mVya2SP7Pq1akEUwur"
+        "/dns4/sentinel1-spartan3.bsn.foundation/tcp/10006/p2p/16Uiu2HAmRjLeEXdoWNyCTJ2QJahH1jUTHUP8xrywFzj8DaYUs539",
+        "/dns4/sentinel2-spartan3.bsn.foundation/tcp/10007/p2p/16Uiu2HAmUQHVk3GHjPLaUomyvkwJyQhEH8mVya2SP7Pq1akEUwur"
     ]
 }
